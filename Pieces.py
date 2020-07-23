@@ -5,22 +5,23 @@ import csv
 from csv import writer
 
 
-def identifyUnit(temp,qty):
-    regex = re.compile("KG|KGS|KILOGRAMS|GRAMS|GRAM|Pound|KILOGRAM|GM")
+def identifyUnit(temp, qty):
+    regex = re.compile("PIECE|PIECES")
     print(temp)
     word = regex.findall(temp)
     print(qty, word)
-    
 
 
 def identifyQuantity(quantity):
     flg = None
-    q=quantity.upper()
+    q = quantity.upper()
     temp = q
+    print(temp)
     if len(temp) != 0:
         x1 = temp.split()
+        print(x1)
         if len(x1) != 0:
-            f1  = open('quantity.csv')
+            f1 = open('quantity.csv')
             csv_f1 = csv.reader(f1)
             qty = None
 
@@ -32,19 +33,21 @@ def identifyQuantity(quantity):
                         flg = 1
                         break
     print('a')
-    if flg==1:
-        identifyUnit(temp,qty)
+    if flg == 1:
+        identifyUnit(temp, qty)
     else:
-        acceptQuantityKg()
+        acceptQuantityPc()
 
-def acceptQuantityKg():
-    quantity=None
-    playAudio('audiokg.wav')
-    quantity=recognize()
-    if quantity=="unknown error occured":
-         acceptQuantityKg()
+
+def acceptQuantityPc():
+    quantity = None
+    playAudio('audiopc.wav')
+    quantity = recognize()
+    print(quantity)
+    if quantity == "unknown error occured":
+        acceptQuantityPc()
     else:
-        print('kg call')
+        print('pc call')
         identifyQuantity(quantity)
-        print('kg after call')
+        print('pc after call')
 

@@ -5,22 +5,24 @@ import csv
 from csv import writer
 
 
-def identifyUnit(temp,qty):
-    regex = re.compile("KG|KGS|KILOGRAMS|GRAMS|GRAM|Pound|KILOGRAM|GM")
+def identifyUnit(temp, qty):
+    regex = re.compile("LITRES|LITRE|ML|MILI|LETTERS")
     print(temp)
     word = regex.findall(temp)
+    if word == 'LETTERS':
+        word='LITRES'
+
     print(qty, word)
-    
 
 
 def identifyQuantity(quantity):
     flg = None
-    q=quantity.upper()
+    q = quantity.upper()
     temp = q
     if len(temp) != 0:
         x1 = temp.split()
         if len(x1) != 0:
-            f1  = open('quantity.csv')
+            f1 = open('quantity.csv')
             csv_f1 = csv.reader(f1)
             qty = None
 
@@ -31,20 +33,23 @@ def identifyQuantity(quantity):
                         qty = y
                         flg = 1
                         break
+                    else:
+                        continue
     print('a')
-    if flg==1:
-        identifyUnit(temp,qty)
+    if flg == 1:
+        identifyUnit(temp, qty)
     else:
-        acceptQuantityKg()
+        acceptQuantityLt()
 
-def acceptQuantityKg():
-    quantity=None
-    playAudio('audiokg.wav')
-    quantity=recognize()
-    if quantity=="unknown error occured":
-         acceptQuantityKg()
+
+def acceptQuantityLt():
+    quantity = None
+    playAudio('audiolit.wav')
+    quantity = recognize()
+    if quantity == "unknown error occured":
+        acceptQuantityLt()
     else:
-        print('kg call')
+        print('lit call')
         identifyQuantity(quantity)
-        print('kg after call')
+        print('lit after call')
 
