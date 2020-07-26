@@ -51,14 +51,15 @@ def identifyProduct(translatedText):
                             finalProduct=finalProduct+""+prd
 
     if (flg==1):
-        acceptQuantityKg()
+        acceptQuantityKg(prd)
         
     elif(flg==2):
-        acceptQuantityLt()
+        acceptQuantityLt(prd)
 
     elif(flg==3):
-        acceptQuantityPc()
+        acceptQuantityPc(prd)
     else:
+        #audio ( p not available )
         import onlineOrder
-        onlineOrder.orderStart()
+        onlineOrder.doYouWantToContinue()
 

@@ -5,14 +5,23 @@ import csv
 from csv import writer
 
 
-def identifyUnit(temp, qty):
+def identifyUnit(temp, qty,prd):
     regex = re.compile("PIECE|PIECES")
     print(temp)
     word = regex.findall(temp)
     print(qty, word)
+    lst = []
+    lst.append(prd)
+    lst.append(qty)
+    lst.extend(word)
+    with open("record.csv", 'a+', newline='') as write_obj:
+        # Create a writer object from csv module
+        csv_writer = writer(write_obj)
+        # Add contents of list as last row in the csv file
+        csv_writer.writerow(lst)
 
 
-def identifyQuantity(quantity):
+def identifyQuantity(quantity,prd):
     flg = None
     q = quantity.upper()
     temp = q
@@ -32,22 +41,22 @@ def identifyQuantity(quantity):
                         qty = y
                         flg = 1
                         break
-    print('a')
+
     if flg == 1:
-        identifyUnit(temp, qty)
+        identifyUnit(temp, qty,prd)
     else:
-        acceptQuantityPc()
+        acceptQuantityPc(prd)
 
 
-def acceptQuantityPc():
+def acceptQuantityPc(prd):
     quantity = None
     playAudio('audiopc.wav')
     quantity = recognize()
     print(quantity)
     if quantity == "unknown error occured":
-        acceptQuantityPc()
+        acceptQuantityPc(prd)
     else:
-        print('pc call')
-        identifyQuantity(quantity)
-        print('pc after call')
+
+        identifyQuantity(quantity,prd)
+
 

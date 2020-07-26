@@ -14,6 +14,6 @@ def recognize():
         print("Could not request results; {0}".format(e))
         x = "Could not request results; {0}".format(e)
     except sr.UnknownValueError:
-        print("unknown error occured")
+
         x= "unknown error occured"
     return x
