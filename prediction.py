@@ -59,7 +59,7 @@ def finalAnswer(result):
 
 
 def acceptAge():
-    playsound('predage.wav')
+    playsound('engpredage.wav')
     r = sr.Recognizer()
 
     try:
@@ -175,7 +175,7 @@ def readAudio():
         print("unknown error occured")
         playAccept()
 
-fnm=['enfpredfever.wav','engpredsob.wav','engpreddib.wav','engpredbp.wav','engpredtas.wav','engpredcgh.wav','engpredfat.wav']
+fnm=['engpredfever.wav','engpredsob.wav','engpreddib.wav','engpredbp.wav','engpredtastesmell.wav','engpredcgh.wav','engpredfat.wav']
 fans.append(random.randint(8888888888,9999999999))
 playsound('engpredtitle.wav')
 acceptAge()

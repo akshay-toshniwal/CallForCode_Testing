@@ -3,6 +3,44 @@ from Recognize import recognize
 import re
 import csv
 from csv import writer
+from Translator import trans
+
+
+def doYouWantToContinue():
+    playAudio("addmore.wav")
+    chck = None
+    speechToText=None
+    speechToText = recognize()
+    print(speechToText)
+    if speechToText == "unknown error occured":
+        doYouWantToContinue()
+        speechToText = None
+    else:
+        tranlatedText = trans(speechToText)
+        temp = tranlatedText.upper()
+        if len(temp) != 0:
+            x1 = temp.split()
+            regex = re.compile("YES|NO|SURE|SURELY|OFCOURSE|CERTAINLY|SOMETIMES|NEVER|NOT|NOPE|ABSOLUTELY|NOTHING|NAI")
+            word = regex.findall(temp)
+            if len(word) != 0:
+                if (word[0] == 'YES' or word[0] == "SOMETIMES" or word[0] == "SURE" or word[0] == "SURELY" or word[0] == "CERTAINLY" or word[0] == "ABSOLUTELY"):
+                    audioFile = 'afteraddmore.wav'
+                    playAudio(audioFile)
+                    speechToText = recognize()
+                    print(speechToText)
+                    if speechToText == "unknown error occured":
+                        audioFile = 'afteraddmore.wav'
+                        speechToText = None
+                    else:
+                        from Product import identifyProduct
+                        translatedText = trans(speechToText)
+                        identifyProduct(translatedText)
+                elif (word[0] == 'NO' or word[0] == "NEVER" or word[0] == "NOT" or word[0] == "NOPE" or word[0] == "NOTHING"):
+                    print('Thank You your Order is Placed')
+            else:
+
+                doYouWantToContinue()
+
 
 
 def identifyUnit(temp, qty,prd):
@@ -21,7 +59,7 @@ def identifyUnit(temp, qty,prd):
         csv_writer = writer(write_obj)
         # Add contents of list as last row in the csv file
         csv_writer.writerow(lst)
-
+    doYouWantToContinue()
 
 def identifyQuantity(quantity,prd):
     flg = None

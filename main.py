@@ -22,7 +22,7 @@ lblTitle.place(x=340,y=80)
 lblopt1 =Label(root,font=('arial',20,'bold'),text='Risk Prediction',bd=21,
                 bg="#b3d9ff",fg='Black',justify=CENTER,)
 lblopt1.place(x=260,y=300)
-lblopt2 =Label(root,font=('arial',20,'bold'),text='Migration Form',bd=21,
+lblopt2 =Label(root,font=('arial',20,'bold'),text='Online Order',bd=21,
                 bg="#b3d9ff",fg='Black',justify=CENTER)
 lblopt2.place(x=560,y=300)
 lblopt3 =Label(root,font=('arial',20,'bold'),text='Donation Form',bd=21,
@@ -38,7 +38,7 @@ def riskpredex():
 
 def migrationex():
     root.destroy()
-    os.system("python migration.py")
+    os.system("python onlineOrder.py")
 
 def donationex():
     root.destroy()
