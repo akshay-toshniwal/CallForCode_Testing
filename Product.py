@@ -1,24 +1,21 @@
 import csv
-from csv import writer
+import random
 
-from PlayAudio import playAudio
 from KiloGram import acceptQuantityKg
 from Liter import acceptQuantityLt
 from Pieces import acceptQuantityPc
+from PlayAudio import playAudio
 
-
-
+number = (random.randint(8888888888, 9999999999))
 def identifyProduct(translatedText):
+    finalProduct = str(number)
     flg = None
-    finalProduct=""
-
-    product=translatedText.upper()
+    product = translatedText.upper()
     temp = product
-    print(temp)
     if len(temp) != 0:
         x1 = temp.split()
         if len(x1) != 0:
-            f1  = open('productkg.csv')
+            f1 = open('productkg.csv')
             csv_f1 = csv.reader(f1)
             prd = None
             for column in csv_f1:
@@ -27,7 +24,7 @@ def identifyProduct(translatedText):
                     if y == column[0]:
                         prd = y
                         flg = 1
-                        finalProduct=finalProduct+""+prd
+                        finalProduct = finalProduct + "" + prd
 
             f1 = open('productlit.csv')
             csv_f1 = csv.reader(f1)
@@ -38,7 +35,7 @@ def identifyProduct(translatedText):
                         if y == column[0]:
                             prd = y
                             flg = 2
-                            finalProduct=finalProduct+""+prd
+                            finalProduct = finalProduct + "" + prd
             f1 = open('productpc.csv')
             csv_f1 = csv.reader(f1)
             if flg == None:
@@ -48,18 +45,17 @@ def identifyProduct(translatedText):
                         if y == column[0]:
                             prd = y
                             flg = 3
-                            finalProduct=finalProduct+""+prd
+                            finalProduct = finalProduct + "" + prd
 
-    if (flg==1):
-        acceptQuantityKg(prd)
-        
-    elif(flg==2):
-        acceptQuantityLt(prd)
+    if (flg == 1):
+        acceptQuantityKg(finalProduct)
 
-    elif(flg==3):
-        acceptQuantityPc(prd)
+    elif (flg == 2):
+        acceptQuantityLt(finalProduct)
+
+    elif (flg == 3):
+        acceptQuantityPc(finalProduct)
     else:
-        #audio ( p not available )
+        playAudio("notinlist.wav")
         import onlineOrder
-        onlineOrder.doYouWantToContinue()
-
+        onlineOrder.orderStart(1)

@@ -10,6 +10,7 @@ import csv
 from csv import writer
 from googletrans import Translator
 import os
+import random
 import sys
 
 
@@ -57,7 +58,7 @@ def readCity(inp,wavnm , hoe):
     if len(temp) != 0:
         x1 = temp.split()
         if len(x1) != 0:
-            f = open('ctydr.csv')
+            f = open('worldcities.csv')
             csv_f = csv.reader(f)
             city = None
             for column in csv_f:
@@ -343,7 +344,8 @@ def textToAudio():
 
 textToAudio()
 
-playsound('donlngslt.wav')
+#playsound('donlngslt.wav')
+result.append(random.randint(8888888888,9999999999))
 engFunction()
 print(result)
 
