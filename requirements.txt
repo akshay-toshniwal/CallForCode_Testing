@@ -43,7 +43,7 @@ sniffio==1.1.0
 soupsieve==2.0.1
 SpeechRecognition==3.8.1
 tabulate==0.8.7
-urllib3==1.25.9
+urllib3==1.26.5
 webencodings==0.5.1
 websocket-client==0.48.0
 Werkzeug==1.0.1
