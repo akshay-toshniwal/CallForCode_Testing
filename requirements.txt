@@ -29,7 +29,7 @@ marshmallow==3.0.0rc3
 playsound==1.2.2
 PyAudio @ file:///C:/Users/Vaishnavi/PycharmProjects/rp%20flask/PyAudio-0.2.11-cp38-cp38-win_amd64.whl
 pydub==0.24.1
-PyJWT==1.7.1
+PyJWT==2.4.0
 pypiwin32==223
 python-dateutil==2.8.1
 pyttsx==1.1
