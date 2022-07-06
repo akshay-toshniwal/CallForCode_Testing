@@ -23,7 +23,7 @@ idna==2.9
 itsdangerous==1.1.0
 Jinja2==2.11.2
 jmespath==0.10.0
-lxml==4.5.1
+lxml==4.9.1
 MarkupSafe==1.1.1
 marshmallow==3.0.0rc3
 playsound==1.2.2
